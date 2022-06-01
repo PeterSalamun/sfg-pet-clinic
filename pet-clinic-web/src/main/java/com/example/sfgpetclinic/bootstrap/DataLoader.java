@@ -5,8 +5,6 @@ import com.example.sfgpetclinic.model.Owner;
 import com.example.sfgpetclinic.model.Vet;
 import com.example.sfgpetclinic.service.OwnerService;
 import com.example.sfgpetclinic.service.VetService;
-import com.example.sfgpetclinic.service.map.OwnerServiceMap;
-import com.example.sfgpetclinic.service.map.VetServiceMap;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -52,6 +50,6 @@ public class DataLoader implements CommandLineRunner {
         vet2.setLastName("Axe");
 
         vetService.save(vet2);
-        System.out.println("loaded vets...");
+        System.out.println("Loaded vets...");
     }
 }
