@@ -2,10 +2,7 @@ package com.example.sfgpetclinic.bootstrap;
 
 
 import com.example.sfgpetclinic.model.*;
-import com.example.sfgpetclinic.service.OwnerService;
-import com.example.sfgpetclinic.service.PetTypeService;
-import com.example.sfgpetclinic.service.SpecialtyService;
-import com.example.sfgpetclinic.service.VetService;
+import com.example.sfgpetclinic.service.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -21,11 +18,14 @@ public class DataLoader implements CommandLineRunner {
 
     private final SpecialtyService specialtyService;
 
-    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialtyService specialtyService) {
+    private final VisitService visitService;
+
+    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialtyService specialtyService, VisitService visitService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
         this.specialtyService = specialtyService;
+        this.visitService = visitService;
     }
 
 
@@ -79,6 +79,14 @@ public class DataLoader implements CommandLineRunner {
         owner2.getPets().add(fionaPet);
 
         ownerService.save(owner2);
+
+        Visit visit1 = new Visit();
+        visit1.setPet(fionaPet);
+        visit1.setDate(LocalDate.now());
+        visit1.setDescription("Sneezy kitty");
+
+        visitService.save(visit1);
+
         System.out.println("Loaded Owners ...");
 
         Specialty spec1 = new Specialty();
