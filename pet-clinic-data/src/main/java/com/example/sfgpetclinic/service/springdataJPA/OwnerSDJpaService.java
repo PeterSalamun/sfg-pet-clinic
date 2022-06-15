@@ -5,6 +5,7 @@ import com.example.sfgpetclinic.repositories.OwnerRepository;
 import com.example.sfgpetclinic.repositories.PetRepository;
 import com.example.sfgpetclinic.repositories.PetTypeRepository;
 import com.example.sfgpetclinic.service.OwnerService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Profile;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
@@ -13,7 +14,7 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
-
+@Slf4j
 @Service
 @Profile("springdata")
 public class OwnerSDJpaService implements OwnerService {

@@ -3,12 +3,13 @@ package com.example.sfgpetclinic.service.springdataJPA;
 import com.example.sfgpetclinic.model.PetType;
 import com.example.sfgpetclinic.repositories.PetTypeRepository;
 import com.example.sfgpetclinic.service.PetTypeService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.Set;
-
+@Slf4j
 @Service
 @Profile("springdata")
 public class PetTypeSDJpaService implements PetTypeService {

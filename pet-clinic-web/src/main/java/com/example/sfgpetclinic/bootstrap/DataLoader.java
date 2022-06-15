@@ -3,11 +3,13 @@ package com.example.sfgpetclinic.bootstrap;
 
 import com.example.sfgpetclinic.model.*;
 import com.example.sfgpetclinic.service.*;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
-
+@Slf4j
 @Component
 public class DataLoader implements CommandLineRunner {
 
@@ -30,6 +32,7 @@ public class DataLoader implements CommandLineRunner {
 
 
     @Override
+    @Transactional
     public void run(String... args) throws Exception {
 
         int count = petTypeService.findAll().size();
@@ -78,6 +81,9 @@ public class DataLoader implements CommandLineRunner {
         fionaPet.setName("Rosco");
         owner2.getPets().add(fionaPet);
 
+        Pet.builder().id(1L).build();
+
+        PetType.builder().id(1L);
         ownerService.save(owner2);
 
         Visit visit1 = new Visit();
