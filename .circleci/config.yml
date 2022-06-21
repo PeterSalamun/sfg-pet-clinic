@@ -5,30 +5,30 @@ version: 2.1
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
-  build:
+    build:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
-    docker:
-      - image:circleci/openjdk:17-jdk
+        docker:
+        - image:circleci/openjdk:17-jdk
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
 
-    working_directory: ~/repo
+        working_directory: ~/repo
 
-    environment:
-      MAVEN_OPTS: -Xmx3200m
+        environment:
+            MAVEN_OPTS: -Xmx3200m
 
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "pom.xml }}
-            - v1-dependencies-
-      - run: mvn dependency:go-offline
+        steps:
+        - checkout
+        - restore_cache:
+              keys:
+              - v1-dependencies-{{ checksum "pom.xml }}
+              - v1-dependencies-
+        - run: mvn dependency:go-offline
 
-      - save_cache:
-          paths:
-            - ~/.m2
-            key: v1-dependencies-{{ checksum "pom.xml" }}
+        - save_cache:
+              paths:
+              - ~/.m2
+              key: v1-dependencies-{{ checksum "pom.xml" }}
 
-      - run: mvn integration-test
+        - run: mvn integration-test
