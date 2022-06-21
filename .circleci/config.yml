@@ -9,7 +9,7 @@ jobs:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
     docker:
-      - image: circleci/openjdk:17-jdk
+      - image: circleci/openjdk:8-jdk
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
 
@@ -22,13 +22,16 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "pom.xml }}
+            - v1-dependencies-{{ checksum "pom.xml" }}
             - v1-dependencies-
+
+      - run: mvn install -DskipTests
+
       - run: mvn dependency:go-offline
 
       - save_cache:
           paths:
-          - ~/.m2
+            - ~/.m2
           key: v1-dependencies-{{ checksum "pom.xml" }}
 
-      - run: mvn install
+      - run: mvn integration-test
