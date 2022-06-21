@@ -46,8 +46,8 @@
     </build>
 
     <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
         <spring-boot.repackage.skip>true</spring-boot.repackage.skip>
         <!-- if missing causing error "Unable to find main class" from Spring Boot 2.1 higher -->
     </properties>
