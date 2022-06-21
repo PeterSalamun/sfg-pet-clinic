@@ -1,6 +1,7 @@
 package com.example.sfgpetclinic.model;
 
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -13,6 +14,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Entity
 @Table(name = "pets")
+@SuperBuilder
 public class Pet extends BaseEntity {
     @Column(name = "name")
     private String name;

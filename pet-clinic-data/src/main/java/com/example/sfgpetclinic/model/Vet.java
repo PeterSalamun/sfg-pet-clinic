@@ -1,6 +1,7 @@
 package com.example.sfgpetclinic.model;
 
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -11,6 +12,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Entity
 @Table(name = "vets")
+@SuperBuilder
 public class Vet extends Person {
 
     @ManyToMany(fetch = FetchType.EAGER)

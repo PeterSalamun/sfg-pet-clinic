@@ -1,6 +1,7 @@
 package com.example.sfgpetclinic.model;
 
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -11,6 +12,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Entity
 @Table(name = "visits")
+@SuperBuilder
 public class Visit extends BaseEntity {
     @Column(name = "date")
     private LocalDate date;
