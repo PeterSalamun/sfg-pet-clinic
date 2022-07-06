@@ -10,9 +10,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 @Slf4j
 @Service
@@ -54,5 +52,10 @@ public class OwnerSDJpaService implements OwnerService {
     @Override
     public Owner findByLastName(String lastName) {
         return ownerRepository.findByLastName(lastName);
+    }
+
+    @Override
+    public List<Owner> findByLastNameLike(String lastName) {
+        return ownerRepository.findByLastNameLike(lastName);
     }
 }
