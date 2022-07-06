@@ -1,7 +1,11 @@
 package com.example.sfgpetclinic.model;
 
-import lombok.*;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.experimental.SuperBuilder;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -11,7 +15,6 @@ import java.util.Set;
 @Setter
 @Getter
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "pets")
 @SuperBuilder
@@ -27,6 +30,7 @@ public class Pet extends BaseEntity {
     @JoinColumn(name = "owner_id")
     private Owner owner;
     @Column(name = "birth_date")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthDate;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pet")
