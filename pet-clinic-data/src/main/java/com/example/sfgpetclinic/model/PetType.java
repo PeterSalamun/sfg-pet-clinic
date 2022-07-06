@@ -15,6 +15,7 @@ import javax.persistence.Table;
 @Table(name = "types")
 @SuperBuilder
 public class PetType extends BaseEntity {
+    //todo constructor ak bude treba
     @Column(name = "name")
     private String name;
 
