@@ -5,9 +5,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
 @Slf4j
-@RequestMapping("/owners")
 @Controller
 public class OwnerController {
 
@@ -17,15 +19,22 @@ public class OwnerController {
         this.ownerService = ownerService;
     }
 
-    @GetMapping({"", "/", "/index", "/index.html"})
+    @GetMapping({"/owners", "/owners/", "/owners/index", "/owners/index.html"})
     public String getOwnersList(Model model) {
 
         model.addAttribute("owners", ownerService.findAll());
         return "owners/index";
     }
 
-    @GetMapping("/find")
-    public String findOwners() {
+    @GetMapping("/owners/find")
+    public String findOnwers(){
         return "notImplemented";
+    }
+
+    @GetMapping("/owners/{ownerId}")
+    public ModelAndView showOwner(@PathVariable Long ownerId) {
+        ModelAndView modelAndView = new ModelAndView("owners/ownerDetails");
+        modelAndView.addObject(this.ownerService.findById(ownerId));
+        return modelAndView;
     }
 }
