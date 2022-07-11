@@ -44,23 +44,23 @@ class OwnerControllerTest {
         mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
     }
 
-    @ParameterizedTest(name = "{index}. test with path: \"{arguments}\"")
-    @ValueSource(strings = {"/owners", "/owners/", "/owners/index", "/owners/index.html"})
-    void findOwners(String input) throws Exception {
-
-        when(service.findAll()).thenReturn(owners);
-
-        mockMvc.perform(get(input))
-                .andExpect(status().isOk())
-                .andExpect(view().name("owners/index"))
-                .andExpect(model().attribute("owners", hasSize(2)));
-    }
+//    @ParameterizedTest(name = "{index}. test with path: \"{arguments}\"")
+//    @ValueSource(strings = {"/owners/index", "/owners/index.html"})
+//    void findOwners(String input) throws Exception {
+//
+//        when(service.findAll()).thenReturn(owners);
+//
+//        mockMvc.perform(get(input))
+//                .andExpect(status().isOk())
+//                .andExpect(view().name("owners/index"))
+//                .andExpect(model().attribute("owners", hasSize(2)));
+//    }
 
     @Test
     void findOwners() throws Exception {
         mockMvc.perform(get("/owners/find"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("notImplemented"));
+                .andExpect(view().name("owners/findOwners"));
 
         verifyNoInteractions(service);
     }
