@@ -19,6 +19,7 @@ import java.util.Set;
 @Table(name = "pets")
 @SuperBuilder
 public class Pet extends BaseEntity {
+
     @Column(name = "name")
     private String name;
 

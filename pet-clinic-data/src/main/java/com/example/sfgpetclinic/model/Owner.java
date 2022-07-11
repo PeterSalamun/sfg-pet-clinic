@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
+import org.springframework.util.Assert;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -28,7 +29,7 @@ public class Owner extends Person {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
     private Set<Pet> pets = new HashSet<>();
 
-    public Pet getPet(Integer id) {
+    public Pet getPet(Long id) {
         for (Pet pet : pets) {
             if (!pet.isNew()) {
                 Long compId = pet.getId();
@@ -54,4 +55,16 @@ public class Owner extends Person {
         return null;
     }
 
+    public Owner addVisit(Long petId, Visit visit) {
+        Assert.notNull(petId, "Pet ID cannot be null");
+        Assert.notNull(visit, "Visit cannot be null");
+
+        Pet pet = getPet(petId);
+
+        Assert.notNull(pet, "Pet cannot be null");
+
+        pet.getVisits().add(visit);
+
+        return this;
+    }
 }
